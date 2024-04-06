@@ -61,7 +61,7 @@ function Message({ msgObj, isOwner, userObj }) {
           {isOwner &&
             <div className='d-flex justify-content-center'>
               {/* <button className='btn btn-outline-primary' onClick={onEditClick}>Edit Seat</button> */}
-              <button className='btn btn-outline-primary' onClick={onDeleteClick}>Delete Seat</button>
+              <button className='btn btn-outline-primary' onClick={onDeleteClick}>Remove</button>
             </div>
           }
         </div>

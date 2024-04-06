@@ -76,7 +76,7 @@ function Auth() {
         <button className='btn btn-primary' onClick={onSocialClick}>Continue with Google</button>
         <button className='btn btn-primary' onClick={onSocialClick}>Continue with Google</button>
         <button className='btn btn-primary' onClick={onSocialClick}>Continue with Google</button>
-        <button onClick={toggleAccount} className='btn btn-outline-danger'>{newAccount ? 'Sign Up' : 'Sign In'}</button>
+        <button onClick={toggleAccount} className='btn btn-outline-primary'>{newAccount ? 'Sign Up' : 'Sign In'}</button>
       </div>
     </div>
   )

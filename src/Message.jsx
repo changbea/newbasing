@@ -53,7 +53,7 @@ function Message({ msgObj, isOwner, userObj }) {
         </div>
         :
         <div>  
-          <div className='d-flex justify-content-center'>User: {userObj.displayName}</div>
+          <div className='d-flex justify-content-center'>User: {msgObj.displayName}</div>
           <div className='d-flex justify-content-center'>Study Room Number: {msgObj.text.counting}</div>
           <div className='d-flex justify-content-center'>Seat Number: {msgObj.text.counter}</div>
           <div className='d-flex justify-content-center'>From: {msgObj.text.clock.hour}:{msgObj.text.clock.minute}</div>

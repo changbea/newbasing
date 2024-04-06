@@ -60,6 +60,9 @@ function Profile({ userObj }) {
   return (  
     <div>
       <form onSubmit={onSubmit}>
+        <div className='border border-primary'>
+          <br/>
+        </div>
         <div className='d-flex justify-content-center'>
           <input className='form-control' placeholder='Profile: display name' value={newDisplayName} type='text' onChange={onChange} />
         </div>

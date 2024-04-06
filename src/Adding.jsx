@@ -10,15 +10,9 @@ import { DateTimeRangePicker } from '@mui/x-date-pickers-pro/DateTimeRangePicker
 import { MobileDateTimeRangePicker } from '@mui/x-date-pickers-pro/MobileDateTimeRangePicker';
 import { DesktopDateTimeRangePicker } from '@mui/x-date-pickers-pro/DesktopDateTimeRangePicker';
 import dayjs from 'dayjs';
-import Adding from './Adding';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 
-function Add({ isLoggedIn, userObj }) {
-  const [choose, setChoose] = useState(0);
-  const [count, setCount] = useState(0);
-  const [counter, setCounter] = useState(0);
-  const [from, setFrom] = useState('');
-  const [to, setTo] = useState('');
+function Adding({ isLoggedIn, userObj, count, choose }) {
   
   const roomList = ['one', 'two', 'three', 'four', 'focus']
   const changeRoom = (event) => {
@@ -34,23 +28,6 @@ function Add({ isLoggedIn, userObj }) {
           target: {value},
       } = event;
       setCounter(value);
-  }
-
-  const submit = async (event) => {
-      event.preventDefault()
-      if(count !== 0 && counter !== 0 && from !== '' && to !== '') {
-        await addDoc(collection(dbservice, 'num'), {
-            displayName: userObj.displayName,
-            text: {choose: choose, count: count, counting: roomList[count-1], counter: counter, clock: from, clocker: to},
-            creatorClock: Date.now(),
-            creatorId: userObj.uid,
-        })
-        setChoose(0)
-        setCount(0)
-        setCounter(0)
-      } else {
-          alert('Choose Number')
-      }
   }
 
   const onClick = (num) => setChoose(num)
@@ -70,7 +47,7 @@ function Add({ isLoggedIn, userObj }) {
 //   console.log(count)
   return (
     <div className='d-flex flex-column'>
-      <div className='d-flex justify-content-center btn-group btn-group-toggle'>
+        <div className='d-flex justify-content-center btn-group btn-group-toggle'>
             {choose === 0 && 
                 <div className='d-flex justify-content-center btn-group btn-group-toggle'>
                     <button className='btn btn-outline-primary' onClick={() => onClick(1)}>Would like to Borrow</button>
@@ -128,16 +105,8 @@ function Add({ isLoggedIn, userObj }) {
                 </div>
             </div>
         }
-        {choose !== 0 &&
-            <div className='d-flex justify-content-center'>
-                <form id='selection' onSubmit={submit}>
-                    <input className='btn btn-outline-primary' type='submit' value='submit'/>
-                </form>
-                <button className='btn btn-outline-primary' onClick={() => onClick(0)}>cancel</button>
-            </div>
-        }
     </div>  
   )
 }
 
-export default Add
+export default Adding

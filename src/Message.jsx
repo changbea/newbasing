@@ -1,15 +1,6 @@
 import { useState, useEffect } from 'react'
 import { auth, onSocialClick, dbservice, storage } from './serverbase'
 import { collection, query, where, orderBy, addDoc, getDocs, doc, onSnapshot, deleteDoc, updateDoc } from 'firebase/firestore';
-import styled from 'styled-components'
-
-const NavBtn = styled.button`
-  border: dashed;
-`
-const SignBtn = styled.div`
-  display: flex;
-  justify-content: center;
-`
 
 function Message({ msgObj, isOwner, userObj }) {
   const [editing, setEditing] = useState(false)
@@ -59,10 +50,10 @@ function Message({ msgObj, isOwner, userObj }) {
           <div className='d-flex justify-content-center'>From: {msgObj.text.clock.year}.{msgObj.text.clock.month}.{msgObj.text.clock.day} {msgObj.text.clock.hour}:{msgObj.text.clock.minute}</div>
           <div className='d-flex justify-content-center'>To: {msgObj.text.clock.year}.{msgObj.text.clock.month}.{msgObj.text.clock.day} {msgObj.text.clocker.hour}:{msgObj.text.clocker.minute}</div>
           {isOwner &&
-            <div className='d-flex justify-content-center'>
-              {/* <button className='btn btn-outline-primary' onClick={onEditClick}>Edit Seat</button> */}
-              <button className='btn btn-outline-primary' onClick={onDeleteClick}>Removing</button>
-            </div>
+            // <div className='d-flex justify-content-center'>
+            //   <button className='btn btn-outline-primary' onClick={onEditClick}>Edit Seat</button>
+            <button className='d-flex justify-content-center btn btn-outline-primary' onClick={onDeleteClick}>Remove</button>
+            // </div>
           }
         </div>
       }

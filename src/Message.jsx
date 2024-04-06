@@ -60,7 +60,7 @@ function Message({ msgObj, isOwner, userObj }) {
           <div className='d-flex justify-content-center'>To: {msgObj.text.clock.year}.{msgObj.text.clock.month}.{msgObj.text.clock.day} {msgObj.text.clocker.hour}:{msgObj.text.clocker.minute}</div>
           {isOwner &&
             <div className='d-flex justify-content-center'>
-              <button className='btn btn-outline-primary' onClick={onEditClick}>Edit Seat</button>
+              {/* <button className='btn btn-outline-primary' onClick={onEditClick}>Edit Seat</button> */}
               <button className='btn btn-outline-primary' onClick={onDeleteClick}>Delete Seat</button>
             </div>
           }

@@ -56,8 +56,8 @@ function Message({ msgObj, isOwner, userObj }) {
           <div className='d-flex justify-content-center'>User: {msgObj.displayName}</div>
           <div className='d-flex justify-content-center'>Study Room Number: {msgObj.text.counting}</div>
           <div className='d-flex justify-content-center'>Seat Number: {msgObj.text.counter}</div>
-          <div className='d-flex justify-content-center'>From: {msgObj.text.clock.hour}:{msgObj.text.clock.minute}</div>
-          <div className='d-flex justify-content-center'>To: {msgObj.text.clocker.hour}:{msgObj.text.clocker.minute}</div>
+          <div className='d-flex justify-content-center'>From: {msgObj.text.clock.year}.{msgObj.text.clock.month}.{msgObj.text.clock.day} {msgObj.text.clock.hour}:{msgObj.text.clock.minute}</div>
+          <div className='d-flex justify-content-center'>To: {msgObj.text.clock.year}.{msgObj.text.clock.month}.{msgObj.text.clock.day} {msgObj.text.clocker.hour}:{msgObj.text.clocker.minute}</div>
           {isOwner &&
             <div className='d-flex justify-content-center'>
               <button className='btn btn-outline-primary' onClick={onEditClick}>Edit Seat</button>

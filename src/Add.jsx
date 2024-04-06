@@ -4,13 +4,13 @@ import { collection, query, where, orderBy, addDoc, getDocs, doc, onSnapshot, de
 import styled from 'styled-components'
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
-import { MultiInputTimeRangeField } from '@mui/x-date-pickers-pro/MultiInputTimeRangeField';
-import { SingleInputTimeRangeField } from '@mui/x-date-pickers-pro/SingleInputTimeRangeField';
 import { DateTimeRangePicker } from '@mui/x-date-pickers-pro/DateTimeRangePicker';
 import { MobileDateTimeRangePicker } from '@mui/x-date-pickers-pro/MobileDateTimeRangePicker';
 import { DesktopDateTimeRangePicker } from '@mui/x-date-pickers-pro/DesktopDateTimeRangePicker';
+import dayjs from 'dayjs';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 
 function Add({ isLoggedIn, userObj }) {
   const [choose, setChoose] = useState(0);
@@ -55,10 +55,11 @@ function Add({ isLoggedIn, userObj }) {
   const onClick = (num) => setChoose(num)
 //   const noticeBorrowOnClick = (boolean) => setChoose(boolean)
   const onChangeFrom = (event) => {
-    setFrom({hour: event.$H, minute: event.$m})
+    console.log(event)
+    setFrom({year: event.$y, month: event.$M+1, day:event.$D, hour: event.$H, minute: event.$m})
   }
   const onChangeTo = (event) => {
-    setTo({hour: event.$H, minute: event.$m})
+    setTo({year: event.$y, month: event.$M+1, day:event.$D, hour: event.$H, minute: event.$m})
   }
   const roomOne = Array(181).fill().map((value, index) => <option key={index+1} value={index+1}>{index+1}</option>)
   const roomFocus = Array(46).fill().map((value, index) => <option key={index+1} value={index+1}>{index+1}</option>)
@@ -113,14 +114,14 @@ function Add({ isLoggedIn, userObj }) {
                 <div className='d-flex justify-content-center'>
                     <div className='p-3'>from</div>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <DemoContainer components={['TimePicker']}>
-                            <TimePicker label="Basic time picker" form='selection' onChange={onChangeFrom}/>
+                        <DemoContainer components={['DateTimePicker']}>
+                            <DateTimePicker label="Basic date time picker" onChange={onChangeFrom}/>
                         </DemoContainer>
                     </LocalizationProvider>
                     <div className='p-3'>to</div>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <DemoContainer components={['TimePicker']}>
-                            <TimePicker label="Basic time picker" form='selection' onChange={onChangeTo}/>
+                        <DemoContainer components={['DateTimePicker']}>
+                            <DateTimePicker label="Basic date time picker" onChange={onChangeTo}/>
                         </DemoContainer>
                     </LocalizationProvider>
                 </div>

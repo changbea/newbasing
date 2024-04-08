@@ -11,8 +11,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
+    "@mantine/core": "^7.7.1",
+    "@mantine/dropzone": "^7.7.1",
+    "@mantine/hooks": "^7.7.1",
     "@mui/material": "^5.15.14",
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "@mui/x-date-pickers": "^7.1.1",
@@ -20,6 +24,7 @@
     "@reduxjs/toolkit": "^2.2.3",
     "dayjs": "^1.11.10",
     "firebase": "^10.5.2",
+    "framer-motion": "^11.0.25",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.18.0",

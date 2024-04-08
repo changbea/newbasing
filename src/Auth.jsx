@@ -74,8 +74,6 @@ function Auth() {
       </form>
       <div className='d-flex flex-column'>
         <button className='btn btn-primary' onClick={onSocialClick}>Continue with Google</button>
-        <button className='btn btn-primary' onClick={onSocialClick}>Continue with Google</button>
-        <button className='btn btn-primary' onClick={onSocialClick}>Continue with Google</button>
         <button onClick={toggleAccount} className='btn btn-outline-primary'>{newAccount ? 'Sign Up' : 'Sign In'}</button>
       </div>
     </div>

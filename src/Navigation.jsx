@@ -9,7 +9,7 @@ const checkbox = () => {
   document.getElementById('nav-control').checked = false
 }
 function Navigation({ isLoggedIn, userObj }) {
-  const [open, setOpen] =useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleClick = () => {
     setOpen((prev) => !prev);
@@ -59,10 +59,13 @@ function Navigation({ isLoggedIn, userObj }) {
         {!isLoggedIn &&
           <nav className="navigation">
             <h1 className='nav-padding'>
-              <Link to='/newbasing/'>Sign In&Up</Link>
+              <Link to='/newbasing/' onClick={checkbox}>Home</Link>
             </h1>
             <h1>
-              <Link to="/newbasing/contact">Contact</Link>
+              <Link to='/newbasing/sign' onClick={checkbox}>Sign In&Up</Link>
+            </h1>
+            <h1>
+              <Link to="/newbasing/contact" onClick={checkbox}>Contact</Link>
             </h1>
           </nav>
         }

@@ -8,11 +8,10 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
-  "build": "vite build",
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d dist",
   "dependencies": {
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.11.4",
@@ -25,6 +24,7 @@
     "@mui/x-date-pickers": "^7.1.1",
     "@mui/x-date-pickers-pro": "^7.1.1",
     "@reduxjs/toolkit": "^2.2.3",
+    "bulma": "^1.0.0",
     "dayjs": "^1.11.10",
     "firebase": "^10.5.2",
     "framer-motion": "^11.0.25",

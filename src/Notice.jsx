@@ -20,7 +20,7 @@ function Notice({ isLoggedIn, userObj }) {
         }));
         setMessages(newArray)
     })
-  })
+  }, [])
 
   return (  
     <div>

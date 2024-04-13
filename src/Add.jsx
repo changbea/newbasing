@@ -13,6 +13,14 @@ import dayjs from 'dayjs';
 import Adding from './Adding';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import '@mantine/dropzone/styles.css';
+import Alert from '@mui/material/Alert';
+import Auth from './Auth'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 function Add({ isLoggedIn, userObj }) {
   const [choose, setChoose] = useState(0);
@@ -20,6 +28,7 @@ function Add({ isLoggedIn, userObj }) {
   const [counter, setCounter] = useState(0);
   const [from, setFrom] = useState('');
   const [to, setTo] = useState('');
+  const [move, setMove] = useState(false)
   
   const roomList = ['one', 'two', 'three', 'four', 'focus']
   const changeRoom = (event) => {
@@ -55,7 +64,10 @@ function Add({ isLoggedIn, userObj }) {
       }
   }
 
-  const onClick = (num) => setChoose(num)
+  const onClick = (num) => {
+    {isLoggedIn && setChoose(num)}
+    {!isLoggedIn && setMove(true)}
+  }
 //   const noticeBorrowOnClick = (boolean) => setChoose(boolean)
   const onChangeFrom = (event) => {
     console.log(event)
@@ -64,6 +76,10 @@ function Add({ isLoggedIn, userObj }) {
   const onChangeTo = (event) => {
     setTo({year: event.$y, month: event.$M+1, day:event.$D, hour: event.$H, minute: event.$m})
   }
+  const handleClose = () => {
+    setMove(false);
+  };
+
   const roomOne = Array(181).fill().map((value, index) => <option key={index+1} value={index+1}>{index+1}</option>)
   const roomFocus = Array(46).fill().map((value, index) => <option key={index+1} value={index+1}>{index+1}</option>)
   const roomTwo = Array(315).fill().map((value, index) => <option key={index+1} value={index+1}>{index+1}</option>)
@@ -72,11 +88,25 @@ function Add({ isLoggedIn, userObj }) {
 //   console.log(count)
   return (
     <div className='d-flex flex-column'>
-      <div className='d-flex justify-content-center btn-group btn-group-toggle'>
+        <div className='d-flex justify-content-center btn-group btn-group-toggle'>
             {choose === 0 && 
                 <div className='d-flex justify-content-center btn-group btn-group-toggle'>
                     <button className='btn btn-outline-primary' onClick={() => onClick(1)}>Would like to Borrow</button>
                     <button className='btn btn-outline-primary' onClick={() => onClick(2)}>Would like to Lend</button>
+                    <Dialog
+                        open={move}
+                        onClose={handleClose}
+                    >
+                        <DialogContent>
+                            Need to login
+                        </DialogContent>
+                        <DialogActions>
+                        <Link to='/newbasing/sign' className='btn btn-outline-primary' onClick={handleClose}>Login</Link>
+                        <button className='btn btn-outline-primary' onClick={handleClose} autoFocus>
+                            Disagree
+                        </button>
+                        </DialogActions>
+                    </Dialog>
                 </div>
             }
             {choose === 1 &&

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import { auth, onSocialClick, dbservice, storage } from './serverbase'
 import { updateProfile, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { collection, query, where, orderBy, addDoc, getDocs, doc, onSnapshot } from 'firebase/firestore';
+import { collection, query, where, orderBy, addDoc, getDocs, doc, onSnapshot, updateDoc } from 'firebase/firestore';
 import styled from 'styled-components'
 
 const NavBtn = styled.button`
@@ -25,6 +25,9 @@ function Profile({ userObj }) {
 
   const onSubmit = async (event) => {
     event.preventDefault()
+    const data = await doc(dbservice, `members/${userObj.uid}`)
+    console.log(userObj.uid)
+    await updateDoc(data, {displayName: newDisplayName});
     await updateProfile(userObj, {
       displayName: newDisplayName
     }).then(() => {
@@ -33,7 +36,7 @@ function Profile({ userObj }) {
       console.log('error')
     })
   }
-
+  
   const onChange = (event) => {
     const {
       target: { value },
@@ -59,12 +62,13 @@ function Profile({ userObj }) {
 
   return (  
     <div>
+      <div>My name is {userObj.displayName}</div>
       <form onSubmit={onSubmit}>
         <div className='border border-primary'>
           <br/>
         </div>
         <div className='d-flex justify-content-center'>
-          <input className='form-control' placeholder='Profile: display name' value={newDisplayName} type='text' onChange={onChange} />
+          <input className='form-control' placeholder='Change name' value={newDisplayName} type='text' onChange={onChange} />
         </div>
         <div className='d-flex justify-content-center'>
           <input className='btn btn-outline-primary' value='update profile' type='submit' />

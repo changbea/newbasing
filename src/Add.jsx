@@ -182,10 +182,10 @@ function Add({ isLoggedIn, userObj }) {
                         anchorEl={anchorEl}
                         onClose={handleClosing}
                         anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'left',
+                            vertical: 'bottom',
+                            horizontal: 'left',
                         }}
-                        >
+                    >
                         {choose === 1 && <div>You can award the user who helped you.</div>}
                         {choose === 2 && <div>You will be awarded by the user you helped.</div>}
                     </Popover>

@@ -102,7 +102,7 @@ function Add({ isLoggedIn, userObj }) {
   const roomTwo = Array(315).fill().map((value, index) => <option key={index+1} value={index+1}>{index+1}</option>)
   const roomThree = Array(156).fill().map((value, index) => <option key={index+1} value={index+1}>{index+1}</option>)
   const roomFour = Array(149).fill().map((value, index) => <option key={index+1} value={index+1}>{index+1}</option>)
-//   console.log(count)
+
   return (
     <div className='d-flex flex-column'>
         <div className='d-flex justify-content-center btn-group btn-group-toggle'>

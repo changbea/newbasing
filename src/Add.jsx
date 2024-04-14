@@ -21,6 +21,9 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import Rating from '@mui/material/Rating';
+import Popover from '@mui/material/Popover';
+import path from './assets/help_FILL0_wght400_GRAD0_opsz24.png';
 
 function Add({ isLoggedIn, userObj }) {
   const [choose, setChoose] = useState(0);
@@ -29,6 +32,8 @@ function Add({ isLoggedIn, userObj }) {
   const [from, setFrom] = useState('');
   const [to, setTo] = useState('');
   const [move, setMove] = useState(false)
+  const [value, setValue] = useState(1);
+  const [anchorEl, setAnchorEl] = useState(null);
   
   const roomList = ['one', 'two', 'three', 'four', 'focus']
   const changeRoom = (event) => {
@@ -79,6 +84,18 @@ function Add({ isLoggedIn, userObj }) {
   const handleClose = () => {
     setMove(false);
   };
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClosing = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
+
 
   const roomOne = Array(181).fill().map((value, index) => <option key={index+1} value={index+1}>{index+1}</option>)
   const roomFocus = Array(46).fill().map((value, index) => <option key={index+1} value={index+1}>{index+1}</option>)
@@ -157,6 +174,33 @@ function Add({ isLoggedIn, userObj }) {
                             <DateTimePicker label="Basic date time picker" onChange={onChangeTo}/>
                         </DemoContainer>
                     </LocalizationProvider>
+                </div>
+                <div className='d-flex justify-content-center'>
+                    <Rating
+                        value={value}
+                        onChange={(event, newValue) => setValue(newValue)}
+                    />
+                </div>
+                <div className='d-flex justify-content-center'>
+                    <div>
+                        {choose === 1 && <span>points you will provide: </span>}
+                        {choose === 2 && <span>points you want to receive: </span>}
+                        <span>{value} </span>
+                        <img src={path} aria-describedby={id} onClick={handleClick}/>
+                    </div>
+                    <Popover
+                        id={id}
+                        open={open}
+                        anchorEl={anchorEl}
+                        onClose={handleClosing}
+                        anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                        }}
+                        >
+                        {choose === 1 && <div>You can award the user who helped you.</div>}
+                        {choose === 2 && <div>You will be awarded by the user you helped.</div>}
+                    </Popover>
                 </div>
             </div>
         }

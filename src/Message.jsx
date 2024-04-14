@@ -55,6 +55,9 @@ function Message({ msgObj, isOwner, userObj }) {
             <button className='d-flex justify-content-center btn btn-outline-primary' onClick={onDeleteClick}>Remove</button>
             // </div>
           }
+          {!isOwner &&
+            <button className='d-flex justify-content-center btn btn-outline-primary'>help</button>
+          }
         </div>
       }
     </div>

@@ -62,7 +62,7 @@ function Add({ isLoggedIn, userObj }) {
     {isLoggedIn && setChoose(num)}
     {!isLoggedIn && setMove(true)}
   }
-//   const noticeBorrowOnClick = (boolean) => setChoose(boolean)
+
   const onChangeFrom = (event) => {
     console.log(event)
     setFrom({year: event.$y, month: event.$M+1, day:event.$D, hour: event.$H, minute: event.$m})

@@ -71,8 +71,6 @@ function Message({ msgObj, isOwner, userObj, isLoggedIn }) {
     updateDoc(data, {round: 5});
     const point = doc(dbservice, `members/${msgObj.creatorId}`)
     const connectedPoint = doc(dbservice, `members/${msgObj.connectedId}`)
-    // console.log(msgObj.point)
-    // console.log(num+msgObj.point)
     console.log(num)
     console.log(value)
     console.log(msgObj.point)
@@ -91,7 +89,6 @@ function Message({ msgObj, isOwner, userObj, isLoggedIn }) {
   const support = () => {
     if (isLoggedIn) { 
       const data = doc(dbservice, `num/${msgObj.id}`)
-      // console.log(data)
       updateDoc(data, {round: 2, connectedId: userObj.uid, connectedName: userObj.displayName});
     } else {
       setMove(true)

@@ -19,40 +19,32 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
 import { getAuth, onAuthStateChanged, updateProfile, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import Menu from './Menu'
 
-function Ranking({ isLoggedIn, userObj }) {
-  const [choose, setChoose] = useState(0);
-  const [rank, setRank] = useState([])
+function support({ userObj, msgObj, isLoggedIn }) {
+  if (isLoggedIn) { 
+    const data = doc(dbservice, `num/${msgObj.id}`)
+    // console.log(data)
+    updateDoc(data, {round: 2, connectedId: userObj.uid, connectedName: userObj.displayName});
+  }
 
-  useEffect(() => {
-    onSnapshot(query(collection(dbservice, 'members'), orderBy('points')), (snapshot) => {
-        const newArray = snapshot.docs.map((document) => ({
-            id: document.id,
-            ...document.data(),
-        }));
-        setRank(newArray)
-    })
-  }, [])
-
-  return (
-    <div className='d-flex flex-column'>
-        <div>
-            ranking / name / points 
-        </div>
-        <ol className='list-group'>
-            {rank.map((element) => {
-                return(
-                    <li key={element.uid} className='list-group'>
-                        <span className='list-group-item list-group-item-primary'>{rank.indexOf(element)+1}. {element.displayName} / {element.points}</span>
-                    </li>
-                )
-            })}
-        </ol>
-    </div>  
+  return(
+    <Dialog
+        open={move}
+        onClose={handleClose}
+    >
+        <DialogContent>
+            Need to login
+        </DialogContent>
+        <DialogActions>
+        <Link to='/newbasing/sign' className='btn btn-outline-primary' onClick={handleClose}>Login</Link>
+        <button className='btn btn-outline-primary' onClick={handleClose} autoFocus>
+            Disagree
+        </button>
+        </DialogActions>
+    </Dialog>
   )
 }
 
-export default Ranking
+export default support

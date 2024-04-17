@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import './App.css'
+import Message from './Message'
 import { auth, onSocialClick, dbservice, storage } from './serverbase'
 import { updateProfile, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { collection, query, where, orderBy, addDoc, getDocs, doc, onSnapshot, updateDoc } from 'firebase/firestore';
@@ -20,8 +21,12 @@ function Profile({ userObj }) {
   const [password, setPassword] = useState('')
   const [newAccount, setNewAccount] = useState(false)
   const [error, setError] = useState('')
+  const [message, setMessage] = useState([])
   const [messages, setMessages] = useState([])
   const [newDisplayName, setNewDisplayName] = useState([])
+  const [num, setNum] = useState(null)
+  const element = []
+  const elements = []
 
   const onSubmit = async (event) => {
     event.preventDefault()
@@ -44,7 +49,7 @@ function Profile({ userObj }) {
     setNewDisplayName(value)
   }
   
-  const getMessages = async () => {
+  const getMessage = async () => {
     const msg = query(collection(dbservice, 'num'), where('creatorId', '==', userObj.uid), orderBy('creatorClock', 'asc'))
     
     onSnapshot(msg, (snapshot) => {
@@ -55,10 +60,38 @@ function Profile({ userObj }) {
       setMessages(newArray);
     })
   }
+  const getMessages = async () => {
+    const msg = query(collection(dbservice, 'num'), where('connectedId', '==', userObj.uid), orderBy('creatorClock', 'asc'))
+    
+    onSnapshot(msg, (snapshot) => {
+      const newArray = snapshot.docs.map((document) => ({
+          id: document.id,
+          ...document.data(),
+      }));
+      setMessage(newArray);
+    })
+  }
+
+  useEffect(() => {
+    getMessage()
+  })
 
   useEffect(() => {
     getMessages()
   })
+  
+
+  useEffect(() => {
+    onSnapshot(query(doc(dbservice, `members/${userObj.uid}`)), (snapshot) => {
+        // const number = snapshot.docs.map((document) => ({
+        //     ...document.data(),
+        // }));
+        const number = snapshot.data().points
+        console.log(number)
+        setNum(number)
+    })
+  }, [])
+  // console.log(num)
 
   return (  
     <div>
@@ -75,7 +108,24 @@ function Profile({ userObj }) {
         </div>
       </form>
       <div>
-        {/* {messages.map((msg) => )} */}
+        Points: {num}
+      </div>
+      <div>
+        Recent task: {message.length+messages.length}
+      </div>
+      <div>
+        {message.map((msg) => {
+          if (msg.round === 5) {
+            return(<Message key={msg.id} msgObj={msg} isOwner={msg.creatorId === userObj.uid} userObj={userObj}/>)
+          }
+        })}
+      </div>
+      <div>
+        {messages.map((msg) => {
+          if (msg.round === 5) { 
+            return(<Message key={msg.id} msgObj={msg} isOwner={msg.creatorId === userObj.uid} userObj={userObj}/>)
+          }
+        })}
       </div>
     </div>
   )

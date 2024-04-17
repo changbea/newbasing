@@ -5,6 +5,7 @@ import { ref, getDownloadURL, uploadBytes, deleteObject } from 'firebase/storage
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import Auth from './Auth'
 import Message from './Message'
+import Menu from './Menu'
 import Notice from './Notice'
 import Add from './Add'
 import { auth, onSocialClick, dbservice, storage } from './serverbase'
@@ -20,7 +21,7 @@ function Home({ isLoggedIn, userObj }) {
     const [count, setCount] = useState('');
     const [counter, setCounter] = useState('');
     const [messages, setMessages] = useState([]);
-    
+    const [num, setNum] = useState(null)
     const noticeBorrowOnClick = (boolean) => setNoticeBorrow(boolean)
     
     useEffect(() => {
@@ -32,10 +33,22 @@ function Home({ isLoggedIn, userObj }) {
             setMessages(newArray)
         })
     })
+
+    useEffect(() => {
+        onSnapshot(query(doc(dbservice, `members/${userObj.uid}`)), (snapshot) => {
+            // const number = snapshot.docs.map((document) => ({
+            //     ...document.data(),
+            // }));
+            const number = snapshot.data().points
+            setNum(number)
+        })
+    }, [])
     
     return (
         <div className='d-flex flex-column'>
             <div className='d-flex justify-content-center'>Welcome {userObj.displayName}</div>
+            {isLoggedIn && <div className='d-flex justify-content-center'>Points: {num}</div>}
+            {isLoggedIn && <Menu userObj={userObj}/>}
             <Add isLoggedIn={isLoggedIn} userObj={userObj}/>
             {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DemoContainer components={['TimePicker']}>

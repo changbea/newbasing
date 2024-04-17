@@ -23,7 +23,8 @@ function Add({ isLoggedIn, userObj }) {
   const [move, setMove] = useState(false)
   const [value, setValue] = useState(1);
   const [anchorEl, setAnchorEl] = useState(null);
-  
+//   const [round, setRound] = useState(1)
+
   const roomList = ['one', 'two', 'three', 'four', 'focus']
   const changeRoom = (event) => {
     event.preventDefault()
@@ -44,11 +45,14 @@ function Add({ isLoggedIn, userObj }) {
       event.preventDefault()
       if(count !== 0 && counter !== 0 && from !== '' && to !== '') {
         await addDoc(collection(dbservice, 'num'), {
-            point: 0,
+            point: value,
             displayName: userObj.displayName,
             text: {choose: choose, count: count, counting: roomList[count-1], counter: counter, clock: from, clocker: to},
+            round: 1,
             creatorClock: Date.now(),
             creatorId: userObj.uid,
+            connectedId: null,
+            connectedName: null,
         })
         setChoose(0)
         setCount(0)
@@ -69,7 +73,7 @@ function Add({ isLoggedIn, userObj }) {
   }
   const onChangeTo = (event) => {
     setTo({year: event.$y, month: event.$M+1, day:event.$D, hour: event.$H, minute: event.$m})
-  }
+}   
   const handleClose = () => {
     setMove(false);
   };

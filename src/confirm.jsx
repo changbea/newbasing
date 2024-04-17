@@ -22,37 +22,12 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { getAuth, onAuthStateChanged, updateProfile, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import Menu from './Menu'
 
-function Ranking({ isLoggedIn, userObj }) {
-  const [choose, setChoose] = useState(0);
-  const [rank, setRank] = useState([])
-
-  useEffect(() => {
-    onSnapshot(query(collection(dbservice, 'members'), orderBy('points')), (snapshot) => {
-        const newArray = snapshot.docs.map((document) => ({
-            id: document.id,
-            ...document.data(),
-        }));
-        setRank(newArray)
-    })
-  }, [])
-
-  return (
-    <div className='d-flex flex-column'>
-        <div>
-            ranking / name / points 
-        </div>
-        <ol className='list-group'>
-            {rank.map((element) => {
-                return(
-                    <li key={element.uid} className='list-group'>
-                        <span className='list-group-item list-group-item-primary'>{rank.indexOf(element)+1}. {element.displayName} / {element.points}</span>
-                    </li>
-                )
-            })}
-        </ol>
-    </div>  
-  )
+function confirm({ userObj, msgObj }) {
+  const data = doc(dbservice, `num/${msgObj.id}`)
+    // console.log(data)
+    updateDoc(data, {round: 3});
 }
 
-export default Ranking
+export default confirm

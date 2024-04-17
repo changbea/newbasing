@@ -18,9 +18,9 @@ function Message({ msgObj, isOwner, userObj, isLoggedIn }) {
   const [editing, setEditing] = useState(false)
   const [move, setMove] = useState(false)
 
-  const onEditClick = () => {
-    setEditing((prev) => !prev)
-  }
+  // const onEditClick = () => {
+  //   setEditing((prev) => !prev)
+  // }
   const onDeleteClick = async () => {
     const data = await doc(dbservice, `num/${msgObj.id}`)
     deleteDoc(data)

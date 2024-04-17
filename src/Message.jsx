@@ -100,17 +100,6 @@ function Message({ msgObj, isOwner, userObj, isLoggedIn }) {
   
   return (
     <div className='border border-primary'>
-      {/* {editing ?
-        <div>
-          <form className='d-flex flex-column justify-content-center' onSubmit={onSubmit}>
-            <input className='d-flex justify-content-center form-control' placeholder={counter} type='number' onChange={onChange} min='1' max='315' />
-            <div className='d-flex justify-content-center'>
-              <input className='btn btn-outline-primary' type='submit' value='done' />
-              <button className='btn btn-outline-primary' onClick={onEditClick}>cancel</button>
-            </div>
-          </form>
-        </div>
-        : */}
         <div>  
           <div className='d-flex justify-content-center'>User: {msgObj.displayName}</div>
           <div className='d-flex justify-content-center'>Points: {msgObj.point}</div>
@@ -128,9 +117,6 @@ function Message({ msgObj, isOwner, userObj, isLoggedIn }) {
           <div className='d-flex justify-content-center'>ConnectedUser: {msgObj.connectedId}</div>
           <div className='d-flex justify-content-center'>ConnectedProfile: {msgObj.connectedName}</div>
           {isOwner &&
-            // <div className='d-flex justify-content-center'>
-            //   <button className='btn btn-outline-primary' onClick={onEditClick}>Edit Seat</button>
-            // </div>
             <div className='d-flex'>
               <button className='d-flex justify-content-center btn btn-outline-primary' onClick={onDeleteClick}>Remove</button>
               {msgObj.round === 2 &&
@@ -190,7 +176,6 @@ function Message({ msgObj, isOwner, userObj, isLoggedIn }) {
             </div>  
           }
         </div>
-      {/* } */}
     </div>
   )
 }

@@ -15,8 +15,8 @@ function Message({ msgObj, isOwner, userObj, isLoggedIn }) {
   const [counter, setCounter] = useState(msgObj.text.counter)
   const [num, setNum] = useState(null)
   const [value, setValue] = useState(null)
-  const [editing, setEditing] = useState(false)
   const [move, setMove] = useState(false)
+  // const [editing, setEditing] = useState(false)
 
   // const onEditClick = () => {
   //   setEditing((prev) => !prev)

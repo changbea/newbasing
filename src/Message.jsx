@@ -17,7 +17,6 @@ function Message({ msgObj, isOwner, userObj, isLoggedIn }) {
   const [value, setValue] = useState(null)
   const [move, setMove] = useState(false)
   // const [editing, setEditing] = useState(false)
-
   // const onEditClick = () => {
   //   setEditing((prev) => !prev)
   // }

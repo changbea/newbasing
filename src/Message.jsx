@@ -50,12 +50,6 @@ function Message({ msgObj, isOwner, userObj, isLoggedIn }) {
         setNum(number)
       }
     )
-    // if (msgObj.connectedId !== null) {
-    // onSnapshot(query(doc(dbservice, `members/${msgObj.connectedId}`)), (snapshot) => {
-    //     const element = snapshot.data().points
-    //     setValue(element)
-    //   })
-    // }
   }, [])
   useEffect(() => {
     if (msgObj.connectedId !== null) {

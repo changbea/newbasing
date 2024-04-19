@@ -25,10 +25,10 @@ function Menu({ isLoggedIn, userObj }) {
   }
   return (
     <div className='d-flex justify-content-center flex-column pb-5'>
-        <button className='btn btn-outline-primary' onClick={() => setChoose(true)}>My status</button>
+        <button className='btn btn-outline-primary' onClick={() => setChoose(true)}>내 상태</button>
         {choose && 
         <div className='d-flex flex-column'>
-            <div className='d-flex justify-content-center'>borrow status</div>
+            <div className='d-flex justify-content-center'>빌리기 상태</div>
                 {messages.map((msg) => {
                     if(msg.creatorId === userObj.uid) {
                         if(msg.text.choose === 1) {
@@ -36,7 +36,7 @@ function Menu({ isLoggedIn, userObj }) {
                         }
                     }
                 })}
-            <div className='d-flex justify-content-center'>lend status</div>
+            <div className='d-flex justify-content-center'>빌려주기 상태</div>
                 {messages.map((msg) => {
                     if(msg.creatorId === userObj.uid) {
                         if(msg.text.choose === 2) {
@@ -44,13 +44,13 @@ function Menu({ isLoggedIn, userObj }) {
                         }
                     }
                 })}
-            <div className='d-flex justify-content-center'>helping status</div>
+            <div className='d-flex justify-content-center'>요청 상태</div>
                 {messages.map((msg) => {
                     if(msg.connectedId === userObj.uid) {
                         return(<Message key={msg.id} msgObj={msg} isOwner={msg.creatorId === userObj.uid} userObj={userObj}/>)
                     }
                 })}
-            <button className='btn btn-outline-primary' onClick={() => setChoose(false)}>close</button>
+            <button className='btn btn-outline-primary' onClick={() => setChoose(false)}>닫기</button>
         </div>
         }
     </div>  

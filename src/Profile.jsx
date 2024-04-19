@@ -111,7 +111,7 @@ function Profile({ userObj }) {
         Points: {num}
       </div>
       <div>
-        Recent task: {message.length+messages.length}
+        Recent tasks: {message.length+messages.length}
       </div>
       <div>
         {message.map((msg) => {

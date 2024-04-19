@@ -1,1 +1,0 @@
-if('serviceWorker' in navigator) navigator.serviceWorker.register('/newbasing/dev-sw.js?dev-sw', { scope: '/newbasing/', type: 'classic' })

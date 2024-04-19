@@ -24,12 +24,10 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { getAuth, onAuthStateChanged, updateProfile, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import Menu from './Menu'
 
-function confirming({ userObj, msgObj, isLoggedIn }) {
-  if (isLoggedIn) {
+function confirming({ userObj, msgObj }) {
     const data = doc(dbservice, `num/${msgObj.id}`)
     // console.log(data)
     updateDoc(data, {round: 4});
-  }
 }
 
 export default confirming

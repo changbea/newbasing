@@ -38,10 +38,10 @@ function support({ userObj, msgObj, isLoggedIn }) {
             Need to login
         </DialogContent>
         <DialogActions>
-        <Link to='/newbasing/sign' className='btn btn-outline-primary' onClick={handleClose}>Login</Link>
-        <button className='btn btn-outline-primary' onClick={handleClose} autoFocus>
-            Disagree
-        </button>
+          <Link to='/newbasing/sign' className='btn btn-outline-primary' onClick={handleClose}>Login</Link>
+          <button className='btn btn-outline-primary' onClick={handleClose} autoFocus>
+              Disagree
+          </button>
         </DialogActions>
     </Dialog>
   )

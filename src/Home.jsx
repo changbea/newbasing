@@ -46,8 +46,8 @@ function Home({ isLoggedIn, userObj }) {
     
     return (
         <div className='d-flex flex-column'>
-            <div className='d-flex justify-content-center'>Welcome {userObj.displayName}</div>
-            {isLoggedIn && <div className='d-flex justify-content-center'>Points: {num}</div>}
+            <div className='d-flex justify-content-center'>좋은 날씨네요 {userObj.displayName} 님</div>
+            {isLoggedIn && <div className='d-flex justify-content-center'>내 포인트: {num}</div>}
             {isLoggedIn && <Menu userObj={userObj}/>}
             <Add isLoggedIn={isLoggedIn} userObj={userObj}/>
             {/* <LocalizationProvider dateAdapter={AdapterDayjs}>

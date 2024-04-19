@@ -28,7 +28,7 @@ function Ranking({ isLoggedIn, userObj }) {
   const [rank, setRank] = useState([])
 
   useEffect(() => {
-    onSnapshot(query(collection(dbservice, 'members'), orderBy('points')), (snapshot) => {
+    onSnapshot(query(collection(dbservice, 'members'), orderBy('points', 'desc')), (snapshot) => {
         const newArray = snapshot.docs.map((document) => ({
             id: document.id,
             ...document.data(),

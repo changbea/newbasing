@@ -62,21 +62,21 @@ function Auth() {
         <div className='d-flex'>
           {/* <label className='form-label'>Email:</label>
           <span>&emsp;</span> */}
-          <input className='form-control' placeholder='Email' name='email' value={email} type='email' onChange={onChange} required/>
+          <input className='form-control' placeholder='이메일' name='email' value={email} type='email' onChange={onChange} required/>
         </div>
         <div className='d-flex'>
           {/* <label className='form-label'>Password:</label>
           <span>&emsp;</span> */}
-          <input className='form-control' placeholder='Password' name='password' value={password} type='password' onChange={onChange} required/>
+          <input className='form-control' placeholder='비밀번호' name='password' value={password} type='password' onChange={onChange} required/>
         </div>
         <div className='d-flex'>
-          <input className='btn btn-outline-primary' value={newAccount ? 'Register' : 'Login'} type='submit'/>
+          <input className='btn btn-outline-primary' value={newAccount ? '회원가입' : '로그인'} type='submit'/>
           <span>{error}</span>
         </div>
       </form>
       <div className='d-flex flex-column'>
-        <button className='btn btn-primary' onClick={onSocialClick}>Continue with Google</button>
-        <button onClick={toggleAccount} className='btn btn-outline-primary'>{newAccount ? 'Login' : 'Register'}</button>
+        <button className='btn btn-primary' onClick={onSocialClick}>구글로 로그인</button>
+        <button onClick={toggleAccount} className='btn btn-outline-primary'>{newAccount ? '로그인' : '회원가입'}</button>
       </div>
     </div>
   )

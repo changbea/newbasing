@@ -46,7 +46,7 @@ function Notice({ isLoggedIn, userObj }) {
             }
         </div>
         {choose !== 0 && messages.map((msg) => {
-            if (msg.text.choose === choose) {
+            if (msg.text.choose === choose && msg.round === 1) {
                 return(
                     <Message key={msg.id} msgObj={msg} isOwner={msg.creatorId === userObj.uid} userObj={userObj} isLoggedIn={isLoggedIn}/>
                 )

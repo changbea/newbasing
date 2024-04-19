@@ -44,7 +44,7 @@ function Menu({ isLoggedIn, userObj }) {
                         }
                     }
                 })}
-            <div className='d-flex justify-content-center'>요청 상태</div>
+            <div className='d-flex justify-content-center'>요청/승낙 상태</div>
                 {messages.map((msg) => {
                     if(msg.connectedId === userObj.uid) {
                         return(<Message key={msg.id} msgObj={msg} isOwner={msg.creatorId === userObj.uid} userObj={userObj}/>)

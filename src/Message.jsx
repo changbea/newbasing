@@ -73,37 +73,37 @@ function Message({ msgObj, isOwner, userObj, isLoggedIn }) {
   return (
     <div className='border border-primary'>
       <div>
-        <div className='d-flex justify-content-center'>User: {msgObj.displayName}</div>
-        <div className='d-flex justify-content-center'>Points: {msgObj.point}</div>
-        <div className='d-flex justify-content-center'>Study Room Number: {msgObj.text.counting}</div>
-        <div className='d-flex justify-content-center'>Seat Number: {msgObj.text.counter}</div>
-        <div className='d-flex justify-content-center'>From: {msgObj.text.clock.year}.{msgObj.text.clock.month}.{msgObj.text.clock.day} {msgObj.text.clock.hour}:{msgObj.text.clock.minute}</div>
-        <div className='d-flex justify-content-center'>To: {msgObj.text.clock.year}.{msgObj.text.clock.month}.{msgObj.text.clock.day} {msgObj.text.clocker.hour}:{msgObj.text.clocker.minute}</div>
         {msgObj.text.choose == 1 &&
-          <div className='d-flex justify-content-center'>Borrowing</div>
+          <div className='d-flex justify-content-center'>빌리기</div>
         }
         {msgObj.text.choose == 2 &&
-          <div className='d-flex justify-content-center'>Lending</div>
+          <div className='d-flex justify-content-center'>빌려주기</div>
         }
-        <div className='d-flex justify-content-center'>Status: {msgObj.round}</div>
-        <div className='d-flex justify-content-center'>ConnectedUser: {msgObj.connectedId}</div>
-        <div className='d-flex justify-content-center'>ConnectedProfile: {msgObj.connectedName}</div>
+        <div className='d-flex justify-content-center'>요청 유저 이름: {msgObj.displayName}</div>
+        <div className='d-flex justify-content-center'>포인트: {msgObj.point}</div>
+        <div className='d-flex justify-content-center'>열람실의 위치: {msgObj.text.counting}</div>
+        <div className='d-flex justify-content-center'>좌석의 위치: {msgObj.text.counter}</div>
+        <div className='d-flex justify-content-center'>이 때부터: {msgObj.text.clock.year}.{msgObj.text.clock.month}.{msgObj.text.clock.day} {msgObj.text.clock.hour}:{msgObj.text.clock.minute}</div>
+        <div className='d-flex justify-content-center'>이 때까지: {msgObj.text.clock.year}.{msgObj.text.clock.month}.{msgObj.text.clock.day} {msgObj.text.clocker.hour}:{msgObj.text.clocker.minute}</div>
+        {/* <div className='d-flex justify-content-center'>ConnectedUser: {msgObj.connectedId}</div> */}
+        <div className='d-flex justify-content-center'>승낙 유저 이름: {msgObj.connectedName}</div>
+        <div className='d-flex justify-content-center'>진행 단계: {msgObj.round}</div>
         {isOwner &&
           <div className='d-flex justify-content-center'>
-            {msgObj.round === 1 && <button className='d-flex justify-content-center btn btn-outline-primary' onClick={onDeleteClick}>Remove</button>}
+            {msgObj.round === 1 && <button className='d-flex justify-content-center btn btn-outline-primary' onClick={onDeleteClick}>지우기</button>}
             {msgObj.round === 2 &&
-              <button className='d-flex justify-content-center btn btn-outline-primary' onClick={() => confirm({userObj, msgObj})}>Confirm</button>
+              <button className='d-flex justify-content-center btn btn-outline-primary' onClick={() => confirm({userObj, msgObj})}>승낙 메시지 확인</button>
             }
             {msgObj.round === 3 &&
               <div className='d-flex justify-content-center'>
-                {msgObj.text.choose == 1 && <button className='d-flex justify-content-center btn btn-outline-primary' onClick={() => confirming({userObj, msgObj})}>Return</button>}
-                {msgObj.text.choose == 2 && <button className='d-flex justify-content-center btn btn-outline-primary'>{msgObj.connectedName} is borrowing</button>}
+                {msgObj.text.choose == 1 && <button className='d-flex justify-content-center btn btn-outline-primary' onClick={() => confirming({userObj, msgObj})}>반납하기</button>}
+                {msgObj.text.choose == 2 && <button className='d-flex justify-content-center btn btn-outline-primary'>{msgObj.connectedName} 님이 빌리는 중</button>}
               </div>
             }
             {msgObj.round === 4 &&
               <div className='d-flex justify-content-center'>
-                {msgObj.text.choose == 1 && <button className='d-flex justify-content-center btn btn-outline-primary'>Confirming the owner</button>}
-                {msgObj.text.choose == 2 && <button className='d-flex justify-content-center btn btn-outline-primary' onClick={onClick}>Confirm Return</button>}
+                {msgObj.text.choose == 1 && <button className='d-flex justify-content-center btn btn-outline-primary'>주인에게 확인 중</button>}
+                {msgObj.text.choose == 2 && <button className='d-flex justify-content-center btn btn-outline-primary' onClick={onClick}>반납 완료 확인</button>}
               </div>
             }
           </div>
@@ -112,15 +112,15 @@ function Message({ msgObj, isOwner, userObj, isLoggedIn }) {
           <div>
             {msgObj.round === 1 &&
               <div className='d-flex justify-content-center'>
-                <button className='d-flex justify-content-center btn btn-outline-primary' onClick={() => support(userObj, msgObj, isLoggedIn)}>help</button>
+                <button className='d-flex justify-content-center btn btn-outline-primary' onClick={() => support(userObj, msgObj, isLoggedIn)}>승낙하기</button>
                 <Dialog open={move} onClose={handleClose}>
                   <DialogContent>
-                    Need to login
+                    로그인이 필요합니다
                   </DialogContent>
                   <DialogActions>
-                  <Link to='/newbasing/sign' className='btn btn-outline-primary' onClick={handleClose}>Login</Link>
+                  <Link to='/newbasing/sign' className='btn btn-outline-primary' onClick={handleClose}>로그인/회원가입 페이지</Link>
                   <button className='btn btn-outline-primary' onClick={handleClose} autoFocus>
-                    Disagree
+                    닫기
                   </button>
                   </DialogActions>
                 </Dialog>
@@ -128,19 +128,19 @@ function Message({ msgObj, isOwner, userObj, isLoggedIn }) {
             }
             {msgObj.round === 2 &&
               <div className='d-flex justify-content-center'>
-                <button className='d-flex justify-content-center btn btn-outline-primary' onClick={() => supporting({userObj, msgObj, isLoggedIn})}>helping</button>
+                <button className='d-flex justify-content-center btn btn-outline-primary' onClick={() => supporting({userObj, msgObj, isLoggedIn})}>승낙 메시지 전송 완료</button>
               </div>
             }
             {msgObj.round === 3 &&
               <div className='d-flex justify-content-center'>
-                {msgObj.text.choose == 1 && <button className='d-flex justify-content-center btn btn-outline-primary'>{msgObj.displayName} is borrowing</button>}
-                {msgObj.text.choose == 2 && <button className='d-flex justify-content-center btn btn-outline-primary' onClick={() => confirming({userObj, msgObj})}>Return</button>}
+                {msgObj.text.choose == 1 && <button className='d-flex justify-content-center btn btn-outline-primary'>{msgObj.displayName} 님이 빌리는 중</button>}
+                {msgObj.text.choose == 2 && <button className='d-flex justify-content-center btn btn-outline-primary' onClick={() => confirming({userObj, msgObj})}>반납하기</button>}
               </div>
             }
             {msgObj.round === 4 &&
               <div className='d-flex justify-content-center'>
-                {msgObj.text.choose == 1 && <button className='d-flex justify-content-center btn btn-outline-primary' onClick={onClick}>Confirm Return</button>}
-                {msgObj.text.choose == 2 && <button className='d-flex justify-content-center btn btn-outline-primary'>Confirming the owner</button>}
+                {msgObj.text.choose == 1 && <button className='d-flex justify-content-center btn btn-outline-primary' onClick={onClick}>반납 완료 확인</button>}
+                {msgObj.text.choose == 2 && <button className='d-flex justify-content-center btn btn-outline-primary'>주인에게 확인 중</button>}
               </div>
             }
           </div>  

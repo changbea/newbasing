@@ -28,23 +28,6 @@ function support({ userObj, msgObj, isLoggedIn }) {
     // console.log(data)
     updateDoc(data, {round: 2, connectedId: userObj.uid, connectedName: userObj.displayName});
   }
-
-  return(
-    <Dialog
-        open={move}
-        onClose={handleClose}
-    >
-        <DialogContent>
-            Need to login
-        </DialogContent>
-        <DialogActions>
-          <Link to='/newbasing/sign' className='btn btn-outline-primary' onClick={handleClose}>Login</Link>
-          <button className='btn btn-outline-primary' onClick={handleClose} autoFocus>
-              Disagree
-          </button>
-        </DialogActions>
-    </Dialog>
-  )
 }
 
 export default support

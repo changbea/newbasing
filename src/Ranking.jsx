@@ -40,7 +40,7 @@ function Ranking({ isLoggedIn, userObj }) {
   return (
     <div className='d-flex flex-column'>
         <div>
-            ranking / name / points 
+            유저 랭킹 / 유저 이름 / 포인트 
         </div>
         <ol className='list-group'>
             {rank.map((element) => {

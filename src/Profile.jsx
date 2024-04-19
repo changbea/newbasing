@@ -95,23 +95,20 @@ function Profile({ userObj }) {
 
   return (  
     <div>
-      <div>My name is {userObj.displayName}</div>
+      <div>제 유저 이름은 {userObj.displayName}</div>
       <form onSubmit={onSubmit}>
-        <div className='border border-primary'>
-          <br/>
+        <div className='d-flex justify-content-center'>
+          <input className='form-control' placeholder='유저 이름 바꾸기' value={newDisplayName} type='text' onChange={onChange} />
         </div>
         <div className='d-flex justify-content-center'>
-          <input className='form-control' placeholder='Change name' value={newDisplayName} type='text' onChange={onChange} />
-        </div>
-        <div className='d-flex justify-content-center'>
-          <input className='btn btn-outline-primary' value='update profile' type='submit' />
+          <input className='btn btn-outline-primary' value='완료' type='submit' />
         </div>
       </form>
       <div>
-        Points: {num}
+        내 포인트: {num}
       </div>
       <div>
-        Recent tasks: {message.length+messages.length}
+        최근 완료된 빌리기/빌려주기: {message.length+messages.length}
       </div>
       <div>
         {message.map((msg) => {
